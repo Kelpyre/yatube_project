@@ -25,11 +25,11 @@ def index(request):
         )
 
 
-def group_list(request, slug):
+def group_list(request, path):
     template = 'posts/group_list.html'
     title = 'Лев Толстой – зеркало русской революции.'
     description = 'Здесь будет информация о группах проекта Yatube'
-    group_name = get_object_or_404(Group, slug=slug)
+    group_name = get_object_or_404(Group, address=path)
     posts = Post.objects.filter(group=group_name).order_by('-pub_date')[:10]
     context = {
         'title': title,
